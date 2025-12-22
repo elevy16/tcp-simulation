@@ -31,7 +31,7 @@ public class Server {
             String data = message.substring(beginning, end);//collects all the characters of this particular packet
             boolean lastPacket = (index == numberOfPackets - 1) || (end >= message.length());//creates a boolean for the last packet
 
-            // ✅ FIXED: Use client-compatible format: SEQUENCE: <seq> DATA: <payload> END: <true/false>
+            // Use client-compatible format: SEQUENCE: <seq> DATA: <payload> END: <true/false>
             String packet = "SEQUENCE: " + index + " DATA: " + data + " END: " + lastPacket;
             packets.add(packet);
             if (lastPacket) break; // ADDED: once we've reached the end, stop generating more packets
