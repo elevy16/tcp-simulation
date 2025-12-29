@@ -53,7 +53,7 @@ public class Client {
 		ClientState state = new ClientState();
 		String line;
 
-		// ADDED: remember the last resend we asked for, so we don't spam identical
+		// remember the last resend we asked for, so we don't spam identical
 		// requests
 		String lastResendAskedFor = "";
 
@@ -107,7 +107,7 @@ public class Client {
 
 		// Expect format: SEQUENCE: <seq> DATA: <payload> END: <true/false>
 		try {
-			// ADDED: robust parsing that preserves spaces in <payload>
+			// robust parsing that preserves spaces in <payload>
 			// Find the marker positions
 			int seqTag = line.indexOf("SEQUENCE:");
 			int dataTag = line.indexOf(" DATA:");
