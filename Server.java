@@ -20,21 +20,21 @@ public class Server {
         
         String message = "Demonstration of TCP protocol";//I had to research this because I thought I should use printlns but in my researched I remembered they are would only show up on my monitor
         int numberOfPackets = 20;
-        // ADDED: make sure sizeOfPackets is at least 1 so we never build empty substrings
+        // make sure sizeOfPackets is at least 1 so we never build empty substrings
         int sizeOfPackets = Math.max(1, message.length() / numberOfPackets);//I needed help with this from AI to decide how to set up this equation
         List<String> packets = new ArrayList<>();//arrayList to hold all packets
         
         for (int index = 0; index < numberOfPackets; index++) {//for loop to track all the packets
             int beginning = index * sizeOfPackets;
             int end = (index == numberOfPackets - 1) ? message.length() : Math.min(message.length(), (index + 1) * sizeOfPackets);//creates boolean flag to check if this is the last packet
-            if (beginning >= message.length()) break; // ADDED: stop if we've consumed the message
+            if (beginning >= message.length()) break; // stop if we've consumed the message
             String data = message.substring(beginning, end);//collects all the characters of this particular packet
             boolean lastPacket = (index == numberOfPackets - 1) || (end >= message.length());//creates a boolean for the last packet
 
             // Use client-compatible format: SEQUENCE: <seq> DATA: <payload> END: <true/false>
             String packet = "SEQUENCE: " + index + " DATA: " + data + " END: " + lastPacket;
             packets.add(packet);
-            if (lastPacket) break; // ADDED: once we've reached the end, stop generating more packets
+            if (lastPacket) break; // once we've reached the end, stop generating more packets
         }
         
         Collections.shuffle(packets); // shuffle actual packets to simulate out-of-order delivery
@@ -69,7 +69,7 @@ public class Server {
             }
         }
         
-        clientSocket.close(); // fixed: removed duplicate close
+        clientSocket.close(); // removed duplicate close
         serverSocket.close();
     }
 }
